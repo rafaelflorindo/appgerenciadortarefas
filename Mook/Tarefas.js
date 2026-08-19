@@ -1,28 +1,32 @@
-const Tarefas = [
-  {
-    id: 1,
-    titulo: "Estudar React Native",
-    descricao: "Aprender sobre NavigationContainer e Stacks",
-    status: "Em andamento",
-    datacadastro: "2026-08-15",
-    dataatualizacao: "2026-08-18"
-  },
-  {
-    id: 2,
-    titulo: "Configurar Ambiente",
-    descricao: "Instalar dependências do projeto",
-    status: "Concluído",
-    datacadastro: "2026-08-10",
-    dataatualizacao: "2026-08-12"
-  },
-  {
-    id: 3,
-    titulo: "Finalizar API",
-    descricao: "Integrar com banco de dados",
-    status: "Pendente",
-    datacadastro: "2026-08-18",
-    dataatualizacao: "2026-08-18"
-  }
-]
+const tarefas = [
+    {
+        'id': 1,
+        'titulo': 'Implementando Base de dados',
+        'descricao': 'Implementando Base de dados para o gerenciamento de tarefas',
+        'status': 'EM_ANDAMENTO',
+        'responsavel': {
+            'id': 1,
+            'nome': 'José da Silva',
+            'data_criacao':'2026-08-14',
+            'data_atualizacao':'2026-08-14'
+        },
+        'data_criacao':'2026-08-14',
+        'data_atualizacao':'2026-08-14',
+    },
+    {
+        'id': 2,
+        'titulo': 'Implementando MVC',
+        'descricao': 'Implementando MVC para o gerenciamento de tarefas',
+        'status': 'CONCLUÍDO',
+        'responsavel': {
+            'id': 2,
+            'nome': 'Fernando de Souza',
+            'data_criacao':'2026-08-14',
+            'data_atualizacao':'2026-08-14',
+        },
+        'data_criacao':'2026-08-14',
+        'data_atualizacao':'2026-08-14',
+    },
+];
 
-export default Tarefas;
+export default tarefas;

@@ -11,9 +11,19 @@ function ListarTarefas({ navigation }) {
                     <Text style={styles.itemTitulo}>{item.titulo}</Text>
                     <Text style={styles.descricao}>{item.descricao}</Text>
                     
-                    <View style={styles.linhaInfo}>
-                        <Text style={styles.status}>Status: {item.status}</Text>
-                        <Text style={styles.data}>{item.dataatualizacao}</Text>
+                    {/* Rodapé do Card */}
+                    <View style={styles.footerCard}>
+                        {/* Linha 1: Responsável e Data */}
+                        <View style={styles.linhaInfo}>
+                            <Text style={styles.responsavel}>👤 {item.responsavel.nome}</Text>
+                            <Text style={styles.data}>{item.data_criacao}</Text>
+                        </View>
+
+                        {/* Linha 2: Status */}
+                        <View style={styles.linhaStatus}>
+                            <Text style={styles.statusLabel}>Status:</Text>
+                            <Text style={styles.statusValor}> {item.status}</Text>
+                        </View>
                     </View>
                 </View>
             ))}
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa',
     padding: 15,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 12,
     borderWidth: 1,
     borderColor: '#ddd',
   },
@@ -58,22 +68,37 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 10,
   },
+  footerCard: {
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    paddingTop: 8,
+    marginTop: 5,
+  },
   linhaInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 5,
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
-    paddingTop: 8,
+    marginBottom: 6,
   },
-  status: {
+  linhaStatus: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  responsavel: {
     color: '#555',
-    fontWeight: 'bold',
     fontSize: 12,
   },
   data: {
-    color: '#999',
+    color: '#888',
+    fontSize: 12,
+  },
+  statusLabel: {
+    color: '#777',
+    fontSize: 12,
+  },
+  statusValor: {
+    color: '#333',
+    fontWeight: 'bold',
     fontSize: 12,
   },
   botaoVoltar: {
