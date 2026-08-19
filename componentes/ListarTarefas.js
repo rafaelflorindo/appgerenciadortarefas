@@ -1,41 +1,55 @@
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import Tarefas from "../Mook/Tarefas"; 
+//import Tarefas from "../Mook/Tarefas"; 
+
+import { tarefasService } from "../services/tarefasService";
 
 function ListarTarefas({ navigation }) {
-    return (
-        <ScrollView style={styles.container}>
-            <Text style={styles.titulo}>Minhas Tarefas</Text>
+  const [tarefas, setTarefas] = useState([]);
 
-            {Tarefas.map((item) => (
-                <View key={item.id} style={styles.card}>
-                    <Text style={styles.itemTitulo}>{item.titulo}</Text>
-                    <Text style={styles.descricao}>{item.descricao}</Text>
-                    
-                    {/* Rodapé do Card */}
-                    <View style={styles.footerCard}>
-                        {/* Linha 1: Responsável e Data */}
-                        <View style={styles.linhaInfo}>
-                            <Text style={styles.responsavel}>👤 {item.responsavel.nome}</Text>
-                            <Text style={styles.data}>{item.data_criacao}</Text>
-                        </View>
+  useEffect(() => {
+    carregarTarefas();
+  }, []);
 
-                        {/* Linha 2: Status */}
-                        <View style={styles.linhaStatus}>
-                            <Text style={styles.statusLabel}>Status:</Text>
-                            <Text style={styles.statusValor}> {item.status}</Text>
-                        </View>
-                    </View>
-                </View>
-            ))}
+  async function carregarTarefas() {
+    const dados = await tarefasService.listar();
+    setTarefas(dados);
+  }
 
-            <TouchableOpacity 
-              style={styles.botaoVoltar} 
-              onPress={() => navigation.navigate('Home')}
-            >
-                <Text style={styles.textoBotao}>Voltar</Text>
-            </TouchableOpacity>
-        </ScrollView>
-    );
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.titulo}>Minhas Tarefas</Text>
+
+      {tarefas.map((item) => (
+        <View key={item.id} style={styles.card}>
+          <Text style={styles.itemTitulo}>{item.titulo}</Text>
+          <Text style={styles.descricao}>{item.descricao}</Text>
+
+          {/* Rodapé do Card */}
+          <View style={styles.footerCard}>
+            {/* Linha 1: Responsável e Data */}
+            <View style={styles.linhaInfo}>
+              <Text style={styles.responsavel}>👤 {item.responsavel.nome}</Text>
+              <Text style={styles.data}>{item.data_criacao}</Text>
+            </View>
+
+            {/* Linha 2: Status */}
+            <View style={styles.linhaStatus}>
+              <Text style={styles.statusLabel}>Status:</Text>
+              <Text style={styles.statusValor}> {item.status}</Text>
+            </View>
+          </View>
+        </View>
+      ))}
+
+      <TouchableOpacity
+        style={styles.botaoVoltar}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Text style={styles.textoBotao}>Voltar</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
